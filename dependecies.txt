@@ -1,0 +1,3 @@
+npm install passport-google-oauth --save // dependecia de google para el signup
+npm install jwt-simple
+npm install moment --save   

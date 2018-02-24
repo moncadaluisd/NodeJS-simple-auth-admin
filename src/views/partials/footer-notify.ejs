@@ -1,0 +1,132 @@
+<script src="js/jquery.js"></script>
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="bs3/js/bootstrap.min.js"></script>
+<script src="js/jquery-ui-1.9.2.custom.min.js"></script>
+<script class="include" type="text/javascript" src="js/jquery.dcjqaccordion.2.7.js"></script>
+<script src="js/jquery.scrollTo.min.js"></script>
+<script src="js/easypiechart/jquery.easypiechart.js"></script>
+<script src="js/jQuery-slimScroll-1.3.0/jquery.slimscroll.js"></script>
+<script src="js/jquery.nicescroll.js"></script>
+<script src="js/jquery.nicescroll.js"></script>
+
+<script src="js/bootstrap-switch.js"></script>
+
+<script type="text/javascript" src="js/fuelux/js/spinner.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-fileupload/bootstrap-fileupload.js"></script>
+<script type="text/javascript" src="js/bootstrap-wysihtml5/wysihtml5-0.3.0.js"></script>
+<script type="text/javascript" src="js/bootstrap-wysihtml5/bootstrap-wysihtml5.js"></script>
+
+<script type="text/javascript" src="js/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="js/bootstrap-daterangepicker/moment.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script type="text/javascript" src="js/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+<script type="text/javascript" src="js/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+
+<script type="text/javascript" src="js/jquery-multi-select/js/jquery.multi-select.js"></script>
+<script type="text/javascript" src="js/jquery-multi-select/js/jquery.quicksearch.js"></script>
+
+<script type="text/javascript" src="js/bootstrap-inputmask/bootstrap-inputmask.min.js"></script>
+
+<script src="js/jquery-tags-input/jquery.tagsinput.js"></script>
+
+<script src="js/select2/select2.js"></script>
+<script src="js/select-init.js"></script>
+
+
+<!--common script init for all pages-->
+<script src="js/scripts.js"></script>
+
+<script src="js/toggle-init.js"></script>
+
+<script src="js/advanced-form.js"></script>
+<!--Easy Pie Chart-->
+<script src="js/easypiechart/jquery.easypiechart.js"></script>
+<!--Sparkline Chart-->
+<script src="js/sparkline/jquery.sparkline.js"></script>
+<!--jQuery Flot Chart-->
+
+<script src="js/app.js"></script>
+
+<script type="text/javascript">
+
+
+    $('#notify').submit(function(event) {
+      event.preventDefault();
+      /* Act on the event */
+      var profit = $('#profit');
+      var date = $('#date');
+      var price = $('#price');
+      var sprice = $('#sprice');
+      var sdate = $('#sdate');
+      var status = $('#status');
+      var market = $('#market');
+      var id = '<%= user.id %>';
+      if( market != ''){
+
+      $.ajax({
+        url: '/notify',
+        type: 'POST',
+        data: $(this).serialize()
+      })
+      .done(function(data) {
+        console.log(data);
+        $('#alert').css('display', 'block');
+        $('#alerta').html(data);
+      })
+      .fail(function() {
+        console.log("error");
+      })
+      .always(function() {
+        console.log("complete");
+      });
+
+}
+  });
+
+
+
+    $.ajax({
+      url: '/api/notify',
+      type: 'POST',
+      data: {id: '<%= user.id %>'}
+    })
+    .done(function(data) {
+      console.log(data);
+      for (var i = 0; i < data.length; i++) {
+
+        $('#data-table').append('<tr><td data-title="market">'+  data[i].market+'</td><td data-title="status">'+  data[i].status+'</td><td data-title="buy date">'+  data[i].date+'</td><td data-title="buy price">'+  data[i].price+'</td><td data-title="sell Date">'+  data[i].sDate+'</td><td data-title="Current/sell Price">'+  data[i].sellP+'</td><td data-title="Profit">'+  data[i].profit+'%</td> <td data-title="edit"> <a class="btn btn-warning" href="/notify/'+  data[i]._id +'"> Edit </a> </td></tr>');
+      }
+      for (var i = 0; i < 5; i++) {
+
+        $('#identidad').append(`<li>
+            <div class="alert alert-info clearfix">
+                <span class="alert-icon"><i class="fa fa-bolt"></i></span>
+                <div class="noti-info">
+                    <a href="#">New Notification ` + data[i].market +`</a>
+                </div>
+            </div>
+        </li>`);
+      }
+
+      $('#cantidad').html(data.length);
+    })
+
+
+    .fail(function() {
+      console.log("error");
+    })
+    .always(function() {
+      console.log("complete");
+    });
+
+
+  cargar_push();
+
+
+
+</script>
+
+
+</body>
+</html>

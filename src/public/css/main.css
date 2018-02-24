@@ -1,0 +1,12 @@
+/*clase login*/
+.login{
+  background: @56ab2f; /*fallback for oll browsers*/
+  background: -webkit-linear-gradient(to right,#a8e063, #56ab2f); /* chrome 10-25, safari*/
+  background: linear-gradient(to right, #a8e063, #56ab2f); /* w3c, IE 10+/ Edge, firefox*/
+}
+/*clase signup*/
+.signup{
+  background: #000428;
+  background: -webkit-linear-gradient(to right,#004e92, #000428); /* chrome 10-25, safari*/
+  background: linear-gradient(to right, #004e92, #000428); /* w3c, IE 10+/ Edge, firefox*/
+}

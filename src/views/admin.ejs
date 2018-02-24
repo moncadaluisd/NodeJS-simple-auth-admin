@@ -1,0 +1,96 @@
+<% include partials/admin-dasboard %>
+<!--sidebar end-->
+    <!--main content start-->
+    <section id="main-content">
+        <section class="wrapper">
+        <!-- page start-->
+
+        <div class="row">
+<div class="col-sm-12">
+
+  <section class="panel">
+      <header class="panel-heading">
+          Responsive table
+          <span class="tools pull-right">
+              <a href="javascript:;" class="fa fa-chevron-down"></a>
+              <a href="javascript:;" class="fa fa-cog"></a>
+              <a href="javascript:;" class="fa fa-times"></a>
+           </span>
+      </header>
+      <div class="panel-body">
+  <section id="unseen">
+
+      <table class="table table-bordered table-striped table-condensed">
+          <thead>
+
+          <tr>
+              <th>Id</th>
+              <th>Full Name</th>
+              <th class="">Username</th>
+              <th class="">Email</th>
+              <th class="">ROl</th>
+              <th class="">edit</th>
+              <th class="">delete</th>
+          </tr>
+          </thead>
+
+          <tbody>
+              <% for(var i=0; i < data.length; i++) { %>
+          <tr>
+              <td><%= i + 1 %></td>
+              <td><%= data[i].local.fullName %>.</td>
+              <td class=""><%= data[i].local.username %></td>
+              <td class="">-<%= data[i].local.email %></td>
+              <form class="" action="admin/rol" method="post">
+
+
+              <td class=""><select name="rol" id="rol">
+                <option value="<%= data[i].local.rol %>"><%= data[i].local.rol %></option>
+                <option value="mod">moderator</option>
+                <option value="baned">Baneado</option>
+                  <option value="admin">Administrador</option>
+                  <option value="free">free</option>
+                  <option value="premium">premium</option>
+
+
+              </select></td>
+              <td><button class="btn btn-primary">
+                <input type="hidden" name="id" value="<%= data[i]._id %>">
+               guardar
+              </button></td>
+              <td>
+                    </form>
+                <form class=""  method="post">
+                  <input type="hidden" name="id" value="<%= data[i]._id %>">
+                  <button  id="" class="btn btn-danger">
+                    Eliminar
+                  </button>
+                </form>
+              </td>
+
+          </tr>
+<% } %>
+          </tbody>
+      </table>
+
+  </section>
+</div>
+</section>
+
+
+</section>
+</div>
+        </div>
+        <!-- page end-->
+        </section>
+    </section>
+    <!--main content end-->
+
+<!--right sidebar end-->
+
+
+
+<!-- Placed js at the end of the document so the pages load faster -->
+
+<!--Core js-->
+<% include partials/footer %>

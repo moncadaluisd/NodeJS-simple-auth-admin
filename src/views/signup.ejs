@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Register</title>
+    <!--inluye las direccion del bostrap-->
+    <% include partials/head-logged %>
+  </head>
+
+  <body class="login-body">
+
+    <div class="container">
+      <% if(message.length > 0){ %>
+        <div class="alert alert-danger">
+          <%= message %>
+        </div>
+      <% } %>
+      <form class="form-signin" action="/signup" method="post">
+        <h2 class="form-signin-heading">registration now</h2>
+        <div class="login-wrap">
+        
+            <br>
+            <span>Or</span>
+            <p>Enter your personal details below</p>
+            <input type="text" class="form-control" placeholder="Full Name" autofocus name="fullName">
+            <input type="text" class="form-control" placeholder="User Name" autofocus name="username">
+
+            <p> Enter your account details below</p>
+            <input type="text" class="form-control" placeholder="Email" autofocus name="email">
+            <input type="password" class="form-control" placeholder="Password" name="password">
+            <input type="password" class="form-control" placeholder="Re-type Password" name=rePassword>
+            <label class="checkbox">
+                <input type="checkbox" value="agree this condition"> I agree to the Terms of Service and Privacy Policy
+            </label>
+            <button class="btn btn-lg btn-login btn-block" type="submit">Submit</button>
+
+            <div class="registration">
+                Already Registered.
+                <a class="" href="/login">
+                    Login
+                </a>
+            </div>
+
+        </div>
+
+      </form>
+
+    </div>
+
+
+    <!-- Placed js at the end of the document so the pages load faster -->
+
+    <!--Core js-->
+    <script src="js/jquery.js"></script>
+    <script src="bs3/js/bootstrap.min.js"></script>
+
+  </body>
+</html>
